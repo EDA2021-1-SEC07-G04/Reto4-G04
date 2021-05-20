@@ -49,6 +49,15 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
+        catalog = controller.startCatalog()
+        controller.startData(catalog)
+        numedges = controller.totalConnections(catalog)
+        numvertex = controller.totalLPs(catalog)   
+        numcount = controller.totalCountries(catalog) 
+        firstlp = controller.getFirstLP(catalog)    
+        print('Numero de landing points: ' + str(numvertex))
+        print('Numero de conexiones: ' + str(numedges))
+        print('El primer landing point y su info es: '+str(firstlp[0])+', '+str(firstlp[1])+', '+str(firstlp[2])+', '+str(firstlp[3]))
 
     elif int(inputs[0]) == 2:
         pass

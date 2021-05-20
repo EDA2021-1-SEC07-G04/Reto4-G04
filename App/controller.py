@@ -30,8 +30,64 @@ El controlador se encarga de mediar entre la vista y el modelo.
 """
 
 # Inicialización del Catálogo de libros
+def startCatalog():
+    """
+    Llama la funcion de inicializacion del catalogo del modelo.
+    """
+    catalog = model.NewMacrostructure()
+    return catalog
 
 # Funciones para la carga de datos
+def startData(catalog):
+    """
+    Carga los datos de los archivos y cargar los datos en la
+    estructura de datos
+    """
+
+    #EJECUCIÓN DE CARGA
+    loadLPs(catalog)
+    loadConnections(catalog)
+    loadCountries(catalog)
+    #EJECUCIÓN DE CARGA
+    
+def loadLPs(catalog):
+    filename = cf.data_dir + "landing_points.csv"
+    input_file = csv.DictReader(open(filename, encoding="utf-8"),
+                                delimiter=",")
+    for lp in input_file:
+        model.addLandingPoint(catalog, lp)                           
+
+
+def loadConnections(catalog):
+    filename = cf.data_dir + "connections.csv"
+    input_file = csv.DictReader(open(filename, encoding="utf-8"),
+                                delimiter=",")
+    for connection in input_file:
+        model.addLandingConnection(catalog, connection)
+
+    
+def loadCountries(catalog):
+    filename = cf.data_dir + "countries.csv"
+    input_file = csv.DictReader(open(filename, encoding="utf-8"),
+                                delimiter=",")
+    for country in input_file:
+        model.addCountry(catalog, country)
+
+def totalLPs(analyzer):
+    return model.totalLPs(analyzer)
+
+
+def totalConnections(analyzer):
+    return model.totalConnections(analyzer)    
+
+def totalCountries(analyzer):
+    return model.totalCountries(analyzer) 
+
+def getFirstLP(catalog):
+    return model.getFirstLP(catalog)      
+
+
+
 
 # Funciones de ordenamiento
 
