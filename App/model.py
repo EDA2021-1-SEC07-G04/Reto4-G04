@@ -30,6 +30,7 @@ from DISClib.ADT import list as lt
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
 from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.ADT.graph import gr
 assert cf
 
 """
@@ -38,9 +39,36 @@ los mismos.
 """
 
 # Construccion de modelos
-
+def NewMacrostructure():
+    macrostructure={"countries":None,"connections":None}
+    macrostructure["countries"]=mp.newMap(numelements=14000,maptype='PROBING',comparefunction=None)
+    macrostructure["connections"]=gr.newGraph(datastructure='ADJ_LIST',directed=False,size=14000,comparefunction=None)
 # Funciones para agregar informacion al catalogo
+def AddCountry(macrostructure,country):
+    entry = m.get(macrostructure['countries'], country['CountryCode'])
+    if entry is None:
+        lstroutes = lt.newList(cmpfunction=None)
+        lt.addLast(lstroutes, country['CountryName'])
+        m.put(macrostructure['countries'], country['CountryCode'], lstroutes)
+    else:
+        lstroutes = entry['value']
+        info = country['CountryName']
+        if not lt.isPresent(lstroutes, info):
+            lt.addLast(lstroutes, info)
+    return analyzer
+    
+    
+    
+    
+def AddLandingPoint():
 
+
+
+def AddConnection():
+
+
+
+    
 # Funciones para creacion de datos
 
 # Funciones de consulta
