@@ -63,7 +63,7 @@ def loadConnections(catalog):
     input_file = csv.DictReader(open(filename, encoding="utf-8"),
                                 delimiter=",")
     for connection in input_file:
-        model.addLandingConnection(catalog, connection)
+        model.addLandingConnection(catalog, connection, 0, None, None)
 
     
 def loadCountries(catalog):
@@ -92,3 +92,18 @@ def getFirstLP(catalog):
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo
+
+def ClusterCheck(catalog, v1, v2):
+    return model.ClusterCheck(catalog, v1, v2)
+
+def MostConnectionLPs(catalog):
+    return model.MostConnectionLPs(catalog)
+
+def minDistanceAB(catalog, pais1, pais2):
+    return model.minDistanceAB(catalog, pais1, pais2)
+
+def affectedLPs(catalog, lp):
+    return model.affectedLPs(catalog, lp)
+
+def expansionMin(catalog):
+    return model.expansionMin(catalog)
